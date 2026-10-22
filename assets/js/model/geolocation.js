@@ -1,45 +1,19 @@
+// fallback hvis vi ikke kan få en position (København)
+const fallback = { lat: 55.6761, long: 12.5683 }
 
-    let posCallback
-
-
- function success(position) {
-
-         let  myLocation={
-        lat:"test",
-        long:"test"
+export function getPosition() {
+  return new Promise((resolve) => {
+    if (!navigator.geolocation) {
+      console.log("Geolocation is not supported by your browser")
+      return resolve(fallback)
     }
 
-  myLocation.lat = position.coords.latitude;
-    myLocation.long= position.coords.longitude;
-// kald callback der henter data
-posCallback(myLocation)
-  }
-
-  function error() {
-  console.log("no pos error");
-  
-     let  myLocation={
-        lat:"test",
-        long:"test"
-    }
-
-  posCallback(myLocation)
-  }
-
-
-
-  export function getPosition(callback){
-
-posCallback=callback
-
-  if (!navigator.geolocation) {
-   //"Geolocation is not supported by your browser";
-  } else {
-   
-    let myPos=navigator.geolocation.getCurrentPosition(success, error);
-  }
-
-
+    navigator.geolocation.getCurrentPosition(
+      (position) => resolve({ lat: position.coords.latitude, long: position.coords.longitude }),
+      () => {
+        console.log("no pos error")
+        resolve(fallback)
+      }
+    )
+  })
 }
-
-

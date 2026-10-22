@@ -1,4 +1,4 @@
 // write cool JS hwere!!
-import { getData } from "./model/openMeteo.js";    
+import { initWeather } from "./controllers/geoLocationcallback.js"
 
-getData()
+initWeather()
