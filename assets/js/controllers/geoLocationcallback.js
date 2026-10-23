@@ -9,8 +9,11 @@ export async function initWeather() {
     const pos = await getPosition()
     const data = await getWeatherData(pos.lat, pos.long)
    
-    dataConversion(data)
-  
+    console.log(data);
+    
+    let myData=dataConversion(data)
+    
+  buildDay(myData,document.getElementById("app"),"2026-10-24")
 
   } catch (error) {
     console.error("No data today:", error)
@@ -45,7 +48,7 @@ wind_speed_max:rawData.daily.wind_speed_10m_max[index],
     myData.push(myDayData)
   });
 
-buildDay(myData,document.getElementById("app"),"2026-10-24")
+return myData
 
 }
 
