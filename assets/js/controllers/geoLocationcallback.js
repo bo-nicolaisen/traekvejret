@@ -2,6 +2,8 @@ import { getPosition } from "../model/geolocation.js"
 import { getWeatherData } from "../model/openMeteo.js"
 import {buildDay} from "../views/daycard.js"
 
+
+
 export async function initWeather() {
   try {
     const pos = await getPosition()
@@ -15,6 +17,10 @@ export async function initWeather() {
     // kald en view-funktion der viser "Could not fetch"
   }
 }
+
+
+
+
 
 function dataConversion(rawData){
   let myTimestamps=rawData.daily.time

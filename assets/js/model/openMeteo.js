@@ -14,6 +14,7 @@ function buildURL(lat, long) {
 
 export async function getWeatherData(lat, long) {
   const response = await fetch(buildURL(lat, long))
+  
   if (!response.ok) throw new Error(`Open-Meteo error: ${response.status}`)
   return response.json()
 }

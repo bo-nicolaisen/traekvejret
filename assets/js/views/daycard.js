@@ -15,7 +15,7 @@ export function buildDay(myData,myParentElement,myDate){
      formattedDate = `${year}-${month}-${day}`;
 
     }
-  
+   
 
     console.log(formattedDate);
 
